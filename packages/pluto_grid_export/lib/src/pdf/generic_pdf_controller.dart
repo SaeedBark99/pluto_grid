@@ -28,6 +28,10 @@ class GenericPdfController extends PdfController {
   final ThemeData? themeData;
 
   @override
+  TextDirection get textDirection =>
+      themeData?.textDirection ?? TextDirection.ltr;
+
+  @override
   PageOrientation getPageOrientation() {
     return PageOrientation.landscape;
   }
@@ -51,25 +55,22 @@ class GenericPdfController extends PdfController {
   Widget getHeader(Context context) {
     String title = getDocumentTitle();
 
-    return Directionality(
-      textDirection: themeData?.textDirection ?? TextDirection.ltr,
-      child: Container(
-        width: double.infinity,
-        margin: const EdgeInsets.only(bottom: 1),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 1),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Text(
+              title,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
               ),
-            )
-          ],
-        ),
+              textAlign: TextAlign.center,
+            ),
+          )
+        ],
       ),
     );
   }

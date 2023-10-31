@@ -21,10 +21,13 @@ abstract class PdfController {
         header: (context) => getHeader(context),
         footer: (context) => getFooter(context),
         build: (Context context) => exportInternal(context),
+        textDirection: textDirection,
       ),
     );
     return doc.save();
   }
+
+  TextDirection get textDirection;
 
   PdfPageFormat getPageFormat();
 
