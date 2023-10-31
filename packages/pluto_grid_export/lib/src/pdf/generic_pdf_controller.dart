@@ -51,22 +51,25 @@ class GenericPdfController extends PdfController {
   Widget getHeader(Context context) {
     String title = getDocumentTitle();
 
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 1),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Text(
-              title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
+    return Directionality(
+      textDirection: themeData?.textDirection ?? TextDirection.ltr,
+      child: Container(
+        width: double.infinity,
+        margin: const EdgeInsets.only(bottom: 1),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
