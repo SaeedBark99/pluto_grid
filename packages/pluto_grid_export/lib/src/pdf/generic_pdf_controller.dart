@@ -18,6 +18,7 @@ class GenericPdfController extends PdfController {
     required this.columns,
     required this.rows,
     this.themeData,
+    this.textDirection = TextDirection.ltr,
   });
 
   final String title;
@@ -28,8 +29,7 @@ class GenericPdfController extends PdfController {
   final ThemeData? themeData;
 
   @override
-  TextDirection get textDirection =>
-      themeData?.textDirection ?? TextDirection.ltr;
+  final TextDirection textDirection;
 
   @override
   PageOrientation getPageOrientation() {

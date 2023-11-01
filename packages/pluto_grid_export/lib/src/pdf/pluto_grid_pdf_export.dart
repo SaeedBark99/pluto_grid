@@ -27,12 +27,14 @@ class PlutoGridDefaultPdfExport extends AbstractTextExport {
     this.creator,
     this.format,
     this.themeData,
+    this.textDirection = TextDirection.ltr,
   });
 
   final String title;
   final String? creator;
   PdfPageFormat? format;
   ThemeData? themeData;
+  final TextDirection textDirection;
 
   @override
   Future<Uint8List> export(PlutoGridStateManager state) async {
@@ -43,6 +45,7 @@ class PlutoGridDefaultPdfExport extends AbstractTextExport {
       columns: getColumnTitles(state),
       rows: mapStateToListOfRows(state),
       themeData: themeData,
+      textDirection: textDirection,
     ).generatePdf();
   }
 
